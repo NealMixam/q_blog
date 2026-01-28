@@ -1,0 +1,9 @@
+{
+  "nav": {
+    "home": "Home",
+    "works": "Works",
+    "articles": "Articles",
+    "about": "About"
+  },
+  "welcome": "Welcome to my Portfolio"
+}
