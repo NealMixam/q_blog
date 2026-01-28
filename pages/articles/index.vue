@@ -3,8 +3,7 @@
     <h1>{{ $t('nav.articles') }}</h1>
 
     <div v-if="pending" class="loading">Загрузка...</div>
-
-    <div v-else-if="error" class="error">Ошибка загрузки</div>
+    <div v-else-if="error" class="error">Ошибка загрузки данных</div>
 
     <div v-else>
       <div class="articles-grid">
@@ -23,21 +22,30 @@
 
       <div class="pagination">
         <button
-            :disabled="currentPage <= 1"
+            :disabled="currentPage === 1"
             @click="changePage(currentPage - 1)"
-            class="pg-btn"
+            class="pg-btn prev-next"
         >
-          &laquo; Назад
+          &larr;
         </button>
 
-        <span class="page-info">Страница {{ currentPage }}</span>
+        <div class="page-numbers">
+          <button
+              v-for="page in visiblePages"
+              :key="page"
+              @click="changePage(page)"
+              :class="['pg-btn', { active: currentPage === page }]"
+          >
+            {{ page }}
+          </button>
+        </div>
 
         <button
             :disabled="!articles || articles.length < limit"
             @click="changePage(currentPage + 1)"
-            class="pg-btn"
+            class="pg-btn prev-next"
         >
-          Вперед &raquo;
+          &rarr;
         </button>
       </div>
     </div>
@@ -51,9 +59,17 @@ const route = useRoute()
 const router = useRouter()
 const localePath = useLocalePath()
 
-const limit = 6;
+const limit = 8;
 
 const currentPage = computed(() => Number(route.query.page) || 1)
+
+const visiblePages = computed(() => {
+  const current = currentPage.value
+  let start = Math.max(1, current - 2)
+  let end = start + 4
+
+  return Array.from({ length: 5 }, (_, i) => start + i)
+})
 
 const { data: articles, pending, error } = await useFetch<Article[]>(
     'https://6082e3545dbd2c001757abf5.mockapi.io/qtim-test-work/posts/',
@@ -79,46 +95,26 @@ const formatDate = (dateString: string) => {
 </script>
 
 <style lang="scss" scoped>
-.articles-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
+.pg-btn {
+  background-color: $pg-bg;
+  color: $pg-text;
+  border: none;
 
-.article-card {
-  border: 1px solid #eee;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.2s;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  &:hover:not(:disabled) {
+    background-color: $pg-hover;
   }
 
-  .article-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-
-  .article-content {
-    padding: 1.5rem;
-
-    .date { font-size: 0.8rem; color: #888; }
-    h2 { font-size: 1.25rem; margin: 0.5rem 0; color: #333; }
-    .preview { font-size: 0.9rem; color: #666; line-height: 1.4; margin-bottom: 1rem; }
-
-    .read-more {
-      color: #0070f3;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
+  &.active {
+    background-color: $pg-active-bg;
+    color: $pg-active-text;
   }
 }
 
+.read-more {
+  background-color: $btn-read-more;
+  color: $color-black;
+  // твои остальные стили
+}
 .loading, .error {
   text-align: center;
   padding: 3rem;
