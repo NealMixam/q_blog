@@ -16,7 +16,11 @@
         <h1>{{ article.title }}</h1>
       </header>
 
-      <img :src="article.image" :alt="article.title" class="main-image" />
+      <img
+          :src="getImageUrl(article.id)"
+          :alt="article.title"
+          class="article-image"
+      />
 
       <div class="content">
         <p class="description">{{ article.description }}</p>
@@ -27,6 +31,7 @@
 
 <script setup lang="ts">
 import type { Article } from '~/types/article'
+const { getImageUrl } = useArticleHelpers()
 
 const route = useRoute()
 const id = route.params.id

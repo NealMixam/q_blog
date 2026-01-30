@@ -8,7 +8,11 @@
     <div v-else>
       <div class="articles-grid">
         <article v-for="article in articles" :key="article.id" class="article-card">
-          <img :src="article.image" :alt="article.title" class="article-image" />
+          <img
+              :src="getImageUrl(article.id)"
+              :alt="article.title"
+              class="article-image"
+          />
           <div class="article-content">
             <h2>{{ article.title }}</h2>
             <p class="preview">{{ article.preview }}</p>
@@ -53,6 +57,7 @@
 
 <script setup lang="ts">
 import type { Article } from '~/types/article'
+const { getImageUrl } = useArticleHelpers()
 
 const route = useRoute()
 const router = useRouter()
