@@ -141,6 +141,8 @@ const changePage = (newPage: number) => {
   color: $pg-text;
   border: none;
   border-radius: 12px;
+  transition: background-color, color 0.6;
+  cursor: pointer;
   box-sizing: border-box;
 
   &:hover:not(:disabled) {
@@ -150,6 +152,10 @@ const changePage = (newPage: number) => {
   &.active {
     background-color: $pg-active-bg;
     color: $pg-active-text;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 
   &.prev-next {

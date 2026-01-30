@@ -2,7 +2,7 @@
 import { resolve } from 'path';
 
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/i18n'],
+  modules: ['@nuxtjs/i18n', '@vueuse/nuxt'],
 
   alias: {
     '@': resolve(__dirname, '/')
@@ -22,8 +22,8 @@ export default defineNuxtConfig({
 
   i18n: {
     locales: [
-      { code: 'en', iso: 'en-US', name: 'EN', file: 'en.json' },
-      { code: 'ru', iso: 'ru-RU', name: 'RU', file: 'ru.json' }
+      { code: 'en', iso: 'en-US', name: 'EN', file: 'en.json', flag: '/flags/en.svg' },
+      { code: 'ru', iso: 'ru-RU', name: 'RU', file: 'ru.json', flag: '/flags/ru.svg' }
     ],
     lazy: true,
     langDir: 'locales',
