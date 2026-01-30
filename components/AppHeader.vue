@@ -48,7 +48,11 @@ const localePath = useLocalePath()
     a {
       text-decoration: none;
       color: #333;
-      &.router-link-active { color: #0070f3; font-weight: bold; }
+
+      &.router-link-active {
+        color: $color-lavender;
+        text-decoration: underline solid 1px;
+      }
     }
   }
 
