@@ -2,6 +2,20 @@
 import { resolve } from 'path';
 
 export default defineNuxtConfig({
+  app: {
+    baseURL: 'https://github.com/NealMixam/q_blog', 
+    buildAssetsDir: 'assets',
+  },
+
+  ssr: true,
+  
+  nitro: {
+    preset: 'github-pages',
+    prerender: {
+      routes: ['/', '/articles']
+    }
+  },
+
   modules: ['@nuxtjs/i18n', '@vueuse/nuxt'],
 
   alias: {
@@ -28,7 +42,8 @@ export default defineNuxtConfig({
     lazy: true,
     langDir: 'locales',
     defaultLocale: 'ru',
-    strategy: 'prefix_except_default'
+    strategy: 'prefix_except_default',
+    detectBrowserLanguage: false
   },
 
   typescript: {
