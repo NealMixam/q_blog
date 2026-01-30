@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <nav class="container">
+    <nav class="nav container">
       <div class="logo">Blog</div>
 
       <ul class="nav-links">
@@ -31,16 +31,13 @@ const localePath = useLocalePath()
 
 <style lang="scss" scoped>
 .header {
-  padding: 1rem 0;
-  border-bottom: 1px solid #eee;
+  padding: 36px 40px;
 
-  .container {
+  .nav {
+    max-width: 1360px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
   }
 
   .nav-links {

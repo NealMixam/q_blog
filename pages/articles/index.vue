@@ -10,7 +10,6 @@
         <article v-for="article in articles" :key="article.id" class="article-card">
           <img :src="article.image" :alt="article.title" class="article-image" />
           <div class="article-content">
-            <p class="date">{{ formatDate(article.createdAt) }}</p>
             <h2>{{ article.title }}</h2>
             <p class="preview">{{ article.preview }}</p>
             <NuxtLink :to="localePath(`/articles/${article.id}`)" class="read-more">
@@ -87,18 +86,62 @@ const changePage = (newPage: number) => {
   })
 }
 
-const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString('ru-RU', {
-    day: 'numeric', month: 'long', year: 'numeric'
-  })
-}
+// const formatDate = (dateString: string) => {
+//   return new Date(dateString).toLocaleDateString('ru-RU', {
+//     day: 'numeric', month: 'long', year: 'numeric'
+//   })
+// }
 </script>
 
 <style lang="scss" scoped>
+.articles-page {
+  padding: 120px 0 140px 0;
+}
+
+.articles-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px 32px;
+  margin-top: 40px;
+}
+
+.article-card {
+  max-width: 280px;
+}
+
+.article-image {
+  width: 100%;
+  height: 280px;
+}
+
+.article-content {
+  font-size: 20px;
+  margin-top: 24px;
+
+  & h2 {
+    font-size: 22px;
+    line-height: 120%;
+    margin-bottom: 12px;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 50px;
+}
+
 .pg-btn {
+  width: 44px;
+  height: 44px;
   background-color: $pg-bg;
   color: $pg-text;
   border: none;
+  border-radius: 12px;
+  box-sizing: border-box;
 
   &:hover:not(:disabled) {
     background-color: $pg-hover;
@@ -108,16 +151,27 @@ const formatDate = (dateString: string) => {
     background-color: $pg-active-bg;
     color: $pg-active-text;
   }
+
+  &.prev-next {
+    background: transparent;
+    border: 1px solid $pg-hover;
+  }
+}
+
+.page-numbers {
+  display: flex;
+  gap: 8px;
 }
 
 .read-more {
-  background-color: $btn-read-more;
-  color: $color-black;
-  // твои остальные стили
+  display: block;
+  color: $btn-read-more;
+  margin-top: 12px;
 }
+
 .loading, .error {
   text-align: center;
   padding: 3rem;
-  font-size: 1.2rem;
+  font-size: 20px;
 }
 </style>
