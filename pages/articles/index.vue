@@ -101,34 +101,81 @@ const changePage = (newPage: number) => {
 <style lang="scss" scoped>
 .articles-page {
   padding: 120px 0 140px 0;
+
+  @include tablet {
+    padding: 80px 20px 100px;
+  }
+
+  @include mobile {
+    padding: 40px 16px 60px;
+  }
+
+  h1 {
+    @include mobile {
+      font-size: 32px;
+    }
+  }
 }
 
 .articles-grid {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 40px 32px;
   margin-top: 40px;
+
+  @include mobile {
+    gap: 30px;
+    margin-top: 24px;
+  }
 }
 
 .article-card {
+  width: calc(25% - 24px);
   max-width: 280px;
+
+  @include respond-to(1200px) {
+    width: calc(33.33% - 22px);
+  }
+
+  @include tablet {
+    width: calc(50% - 16px);
+    max-width: none;
+  }
+
+  @include mobile {
+    width: 100%;
+  }
 }
 
 .article-image {
   width: 100%;
   height: 280px;
+  object-fit: cover;
+
+  @include mobile {
+    height: 200px;
+  }
 }
 
 .article-content {
   font-size: 20px;
   margin-top: 24px;
 
+  @include mobile {
+    font-size: 18px;
+    margin-top: 16px;
+  }
+
   & h2 {
     font-size: 22px;
     line-height: 120%;
     margin-bottom: 12px;
+
+    @include mobile {
+      font-size: 20px;
+    }
   }
 }
 
@@ -136,17 +183,26 @@ const changePage = (newPage: number) => {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
   margin-top: 50px;
+
+  @include mobile {
+    justify-content: center;
+    margin-top: 40px;
+  }
 }
 
 .pg-btn {
   width: 44px;
   height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: $pg-bg;
   color: $pg-text;
   border: none;
   border-radius: 12px;
-  transition: background-color, color 0.6;
+  transition: all 0.3s ease;
   cursor: pointer;
   box-sizing: border-box;
 
@@ -167,17 +223,31 @@ const changePage = (newPage: number) => {
     background: transparent;
     border: 1px solid $pg-hover;
   }
+
+  @include mobile {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+  }
 }
 
 .page-numbers {
   display: flex;
   gap: 8px;
+
+  @include mobile {
+    gap: 4px;
+  }
 }
 
 .read-more {
   display: block;
   color: $btn-read-more;
   margin-top: 12px;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .loading, .error {
