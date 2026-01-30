@@ -82,8 +82,12 @@ const scrollToTop = () => {
   padding-top: 140px;
   background-color: $color-lavender;
 
+  @include tablet {
+    padding: 60px 40px 0;
+  }
+
   @include mobile {
-    padding-top: 60px;
+    padding: 60px 20px 0;
   }
 
   &__main {
@@ -130,7 +134,10 @@ const scrollToTop = () => {
     flex-direction: column;
     gap: 8px;
 
-    a { text-decoration: none; color: inherit; }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   }
 
   &__bottom {
@@ -143,7 +150,7 @@ const scrollToTop = () => {
 
     @include mobile {
       margin-top: 80px;
-      height: 100px;
+      height: unset;
     }
   }
 
@@ -170,6 +177,7 @@ const scrollToTop = () => {
     z-index: 1;
 
     @include mobile {
+      left: 60%;
       bottom: -99px;
     }
 
@@ -177,7 +185,7 @@ const scrollToTop = () => {
       width: 358px;
       height: 358px;
       background-color: $color-black;
-      color:  $color-white;
+      color: $color-white;
       border-radius: 50%;
       border: none;
       cursor: pointer;

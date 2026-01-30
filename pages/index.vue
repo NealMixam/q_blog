@@ -5,7 +5,6 @@ const localePath = useLocalePath()
 <template>
   <section class="hero">
     <h1>{{ $t('welcome') }}</h1>
-    <p>Блог на Nuxt 3</p>
     <div class="cta">
       <NuxtLink :to="localePath('/articles')" class="btn">Перейти в блог</NuxtLink>
     </div>
@@ -16,19 +15,20 @@ const localePath = useLocalePath()
 .hero {
   text-align: center;
   padding: 100px 0;
+}
 
-  h1 { font-size: 3rem; margin-bottom: 20px; }
+.cta {
 
   .btn {
-    display: inline-block;
-    background: #0070f3;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.3s;
-
-    &:hover { background: #0051ad; }
+    display: block;
+    margin: 24px auto 0;
+    max-width: 160px;
+    font-size: 20px;
+    line-height: 100%;
+    padding: 10px 12px;
+    background-color: $color-black;
+    color: $color-white;
+    border-radius: 12px;
   }
 }
 </style>
