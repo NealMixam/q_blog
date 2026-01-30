@@ -3,7 +3,7 @@ import { resolve } from 'path';
 
 export default defineNuxtConfig({
   app: {
-    baseURL: 'https://github.com/NealMixam/q_blog', 
+    baseURL: '/q_blog/', 
     buildAssetsDir: 'assets',
   },
 
