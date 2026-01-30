@@ -36,8 +36,8 @@ export default defineNuxtConfig({
 
   i18n: {
     locales: [
-      { code: 'en', iso: 'en-US', name: 'EN', file: 'en.json', flag: '/flags/en.svg' },
-      { code: 'ru', iso: 'ru-RU', name: 'RU', file: 'ru.json', flag: '/flags/ru.svg' }
+      { code: 'en', iso: 'en-US', name: 'EN', file: 'en.json', flag: '/q_blog/flags/en.svg' },
+      { code: 'ru', iso: 'ru-RU', name: 'RU', file: 'ru.json', flag: '/q_blog/flags/ru.svg' }
     ],
     lazy: true,
     langDir: 'locales',
